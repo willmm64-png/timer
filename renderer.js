@@ -9,6 +9,7 @@ const shortBreakButton = document.getElementById('short-break-button');
 const longBreakButton = document.getElementById('long-break-button');
 const ringProgress = document.querySelector('.timer__ring-progress');
 const statusText = document.getElementById('status-text');
+const ringProgress = document.querySelector('.timer__ring-progress');
 
 const RING_LENGTH = 339.292;
 let totalSeconds = 25 * 60;
