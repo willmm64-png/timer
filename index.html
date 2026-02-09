@@ -15,6 +15,7 @@
 
       <section class="timer">
         <div class="timer__display" id="timer-display">25:00</div>
+        <p class="timer__status" id="status-text">Ready</p>
         <div class="timer__ring">
           <svg viewBox="0 0 120 120" aria-hidden="true">
             <circle class="timer__ring-base" cx="60" cy="60" r="54" />
@@ -33,6 +34,12 @@
             <span>Seconds</span>
             <input id="seconds-input" type="number" min="0" max="59" value="0" />
           </label>
+        </div>
+
+        <div class="controls__presets">
+          <button id="pomodoro-button" class="button button--ghost">Pomodoro 25</button>
+          <button id="short-break-button" class="button button--ghost">Short Break 5</button>
+          <button id="long-break-button" class="button button--ghost">Long Break 15</button>
         </div>
 
         <div class="controls__buttons">

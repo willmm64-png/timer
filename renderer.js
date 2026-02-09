@@ -4,6 +4,11 @@ const secondsInput = document.getElementById('seconds-input');
 const startButton = document.getElementById('start-button');
 const pauseButton = document.getElementById('pause-button');
 const resetButton = document.getElementById('reset-button');
+const pomodoroButton = document.getElementById('pomodoro-button');
+const shortBreakButton = document.getElementById('short-break-button');
+const longBreakButton = document.getElementById('long-break-button');
+const ringProgress = document.querySelector('.timer__ring-progress');
+const statusText = document.getElementById('status-text');
 const ringProgress = document.querySelector('.timer__ring-progress');
 
 const RING_LENGTH = 339.292;
@@ -32,11 +37,18 @@ const readInputs = () => {
   updateDisplay();
 };
 
+const setPreset = (minutes, seconds = 0) => {
+  minutesInput.value = minutes;
+  secondsInput.value = seconds;
+  resetTimer();
+};
+
 const tick = () => {
   if (remainingSeconds <= 0) {
     clearInterval(intervalId);
     intervalId = null;
     startButton.textContent = 'Start';
+    statusText.textContent = 'Done';
     return;
   }
   remainingSeconds -= 1;
@@ -50,8 +62,13 @@ const startTimer = () => {
   if (remainingSeconds === 0) {
     readInputs();
   }
+  if (totalSeconds === 0) {
+    statusText.textContent = 'Set Time';
+    return;
+  }
   intervalId = setInterval(tick, 1000);
   startButton.textContent = 'Running';
+  statusText.textContent = 'Focus';
 };
 
 const pauseTimer = () => {
@@ -61,11 +78,13 @@ const pauseTimer = () => {
   clearInterval(intervalId);
   intervalId = null;
   startButton.textContent = 'Start';
+  statusText.textContent = 'Paused';
 };
 
 const resetTimer = () => {
   pauseTimer();
   readInputs();
+  statusText.textContent = 'Ready';
 };
 
 startButton.addEventListener('click', startTimer);
@@ -73,5 +92,8 @@ pauseButton.addEventListener('click', pauseTimer);
 resetButton.addEventListener('click', resetTimer);
 minutesInput.addEventListener('change', resetTimer);
 secondsInput.addEventListener('change', resetTimer);
+pomodoroButton.addEventListener('click', () => setPreset(25));
+shortBreakButton.addEventListener('click', () => setPreset(5));
+longBreakButton.addEventListener('click', () => setPreset(15));
 
 updateDisplay();
