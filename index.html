@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Electron Timer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="app__header">
+        <p class="app__eyebrow">Focus</p>
+        <h1>Simple Timer</h1>
+      </header>
+
+      <section class="timer">
+        <div class="timer__display" id="timer-display">25:00</div>
+        <div class="timer__ring">
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <circle class="timer__ring-base" cx="60" cy="60" r="54" />
+            <circle class="timer__ring-progress" cx="60" cy="60" r="54" />
+          </svg>
+        </div>
+      </section>
+
+      <section class="controls">
+        <div class="controls__inputs">
+          <label class="input">
+            <span>Minutes</span>
+            <input id="minutes-input" type="number" min="0" max="120" value="25" />
+          </label>
+          <label class="input">
+            <span>Seconds</span>
+            <input id="seconds-input" type="number" min="0" max="59" value="0" />
+          </label>
+        </div>
+
+        <div class="controls__buttons">
+          <button id="start-button" class="button button--primary">Start</button>
+          <button id="pause-button" class="button">Pause</button>
+          <button id="reset-button" class="button button--ghost">Reset</button>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p>Set your time, press start, and stay focused.</p>
+      </footer>
+    </main>
+
+    <script src="renderer.js"></script>
+  </body>
+</html>
